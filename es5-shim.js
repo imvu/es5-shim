@@ -23,7 +23,7 @@
     } else {
         // Browser globals (root is window)
         root.returnExports = factory();
-  }
+    }
 }(this, function () {
 
 /**
