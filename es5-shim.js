@@ -4,6 +4,7 @@
 //Add semicolon to prevent IIFE from being passed as argument to concated code.
 ;
 // Module systems magic dance
+;
 (function (definition) {
     definition();
 })(function () {
