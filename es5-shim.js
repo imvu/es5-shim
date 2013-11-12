@@ -6,6 +6,7 @@
 
 // vim: ts=4 sts=4 sw=4 expandtab
 
+//Add semicolon to prevent IIFE from being passed as argument to concated code.
 ;
 
 // UMD (Universal Module Definition)
