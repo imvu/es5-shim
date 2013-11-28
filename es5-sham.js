@@ -5,16 +5,7 @@
 ;
 // Module systems magic dance
 (function (definition) {
-    // RequireJS
-    if (typeof define == "function") {
-        define(definition);
-    // YUI3
-    } else if (typeof YUI == "function") {
-        YUI.add("es5-sham", definition);
-    // CommonJS and <script>
-    } else {
-        definition();
-    }
+    definition();
 })(function () {
 
 
@@ -68,11 +59,11 @@ function doesGetOwnPropertyDescriptorWork(object) {
 //check whether getOwnPropertyDescriptor works if it's given. Otherwise,
 //shim partially.
 if (Object.defineProperty) {
-    var getOwnPropertyDescriptorWorksOnObject = 
+    var getOwnPropertyDescriptorWorksOnObject =
         doesGetOwnPropertyDescriptorWork({});
     var getOwnPropertyDescriptorWorksOnDom = typeof document == "undefined" ||
     doesGetOwnPropertyDescriptorWork(document.createElement("div"));
-    if (!getOwnPropertyDescriptorWorksOnDom || 
+    if (!getOwnPropertyDescriptorWorksOnDom ||
             !getOwnPropertyDescriptorWorksOnObject
     ) {
         var getOwnPropertyDescriptorFallback = Object.getOwnPropertyDescriptor;
