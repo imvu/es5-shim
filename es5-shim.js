@@ -726,7 +726,7 @@ if (
         year = this.getUTCFullYear();
 
         month = this.getUTCMonth();
-        // see https://github.com/kriskowal/es5-shim/issues/111
+        // see https://github.com/es-shims/es5-shim/issues/111
         year += Math.floor(month / 12);
         month = (month % 12 + 12) % 12;
 
