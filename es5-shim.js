@@ -8,10 +8,23 @@
 
 //Add semicolon to prevent IIFE from being passed as argument to concated code.
 ;
-// Module systems magic dance
-(function (definition) {
-    definition();
-})(function () {
+
+// UMD (Universal Module Definition)
+// see https://github.com/umdjs/umd/blob/master/returnExports.js
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(factory);
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory();
+  }
+}(this, function () {
 
 /**
  * Brings an environment as close to ECMAScript 5 compliance
@@ -125,11 +138,11 @@ if (!Function.prototype.bind) {
             boundArgs.push("$" + i);
         }
 
-        // XXX Build a dynamic function with desired amount of arguments is the only 
-        // way to set the length property of a function. 
-        // In environments where Content Security Policies enabled (Chrome extensions, 
-        // for ex.) all use of eval or Function costructor throws an exception. 
-        // However in all of these environments Function.prototype.bind exists 
+        // XXX Build a dynamic function with desired amount of arguments is the only
+        // way to set the length property of a function.
+        // In environments where Content Security Policies enabled (Chrome extensions,
+        // for ex.) all use of eval or Function costructor throws an exception.
+        // However in all of these environments Function.prototype.bind exists
         // and so this code will never be executed.
         var bound = Function("binder", "return function(" + boundArgs.join(",") + "){return binder.apply(this,arguments)}")(binder);
 
@@ -1361,4 +1374,4 @@ var toObject = function (o) {
     return Object(o);
 };
 
-});
+}));
