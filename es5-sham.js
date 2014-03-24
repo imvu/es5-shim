@@ -37,12 +37,12 @@ if (!Object.getPrototypeOf) {
             return null;
         }
 
-
-        return object.__proto__ || (
+        var r = object.__proto__ || (
             object.constructor
                 ? object.constructor.prototype
                 : prototypeOfObject
         );
+        return (r !== object) ? r : prototypeOfObject;
     };
 }
 
