@@ -33,6 +33,11 @@ if (!Object.getPrototypeOf) {
     // http://ejohn.org/blog/objectgetprototypeof/
     // recommended by fschaefer on github
     Object.getPrototypeOf = function getPrototypeOf(object) {
+        if (object === prototypeOfObject){
+            return null;
+        }
+
+
         return object.__proto__ || (
             object.constructor
                 ? object.constructor.prototype
